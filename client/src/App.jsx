@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io(process.env.REACT_APP_SERVER_URL || "http://localhost:8080");
-
+const socket = io("https://minus-one-game-production.up.railway.app", {
+  transports: ["websocket", "polling"],
+  timeout: 20000
+});
+//const socket = io(process.env.REACT_APP_SERVER_URL || "http://localhost:8080");
 
 export default function App() {
   const [playerId, setPlayerId] = useState(null);
