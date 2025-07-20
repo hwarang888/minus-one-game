@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8080");
+const socket = io(process.env.REACT_APP_SERVER_URL || "http://localhost:8080");
 
 export default function App() {
   const [playerId, setPlayerId] = useState(null);
