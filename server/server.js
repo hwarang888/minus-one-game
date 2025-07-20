@@ -25,6 +25,11 @@ server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
+socket.on("test-connection", (data) => {
+  console.log("Test connection received:", data);
+  socket.emit("test-response", { message: "Server received your message!" });
+});
+
 const rooms = {}; // roomId -> { players, phase, roundNumber, ... }
 
 io.on("connection", (socket) => {

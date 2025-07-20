@@ -3,6 +3,7 @@ import io from "socket.io-client";
 
 const socket = io(process.env.REACT_APP_SERVER_URL || "http://localhost:8080");
 
+
 export default function App() {
   const [playerId, setPlayerId] = useState(null);
   const [players, setPlayers] = useState([]);
@@ -15,6 +16,17 @@ export default function App() {
   const [winner, setWinner] = useState("");
   const [result, setResult] = useState("");
   const [showingResult, setShowingResult] = useState(false);
+  
+  // Add after socket initialization
+  useEffect(() => {
+    const testConnection = () => {
+      console.log("Testing connection to:", process.env.REACT_APP_SERVER_URL);
+      socket.emit("test-connection", { message: "Hello from client" });
+    };
+
+    setTimeout(testConnection, 2000);
+  }, []);
+
   
   // Listen for socket.io events
   useEffect(() => {
