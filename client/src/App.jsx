@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 const socket = io("https://minus-one-game-production.up.railway.app", {
-  transports: ["websocket", "polling"],
-  timeout: 20000
+  transports: ["polling"],
+  upgrade: false, // Disable upgrade to websocket
+  rememberUpgrade: false,
+  timeout: 20000,
+  reconnection: true,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000
 });
 //const socket = io(process.env.REACT_APP_SERVER_URL || "http://localhost:8080");
 
